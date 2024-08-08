@@ -1,30 +1,33 @@
-import interfaces.DefaultCards;
-
+import enums.Race;
+import model.card.CardBase;
+import model.card.NecroCard;
+//опечатки остальные правь сам)
 public class Cards {
+    private final CardBase card = new NecroCard();
+    private final int[] deckSizes = new int[30]; //переместить в настройки?)
     void sizecard() {
-        CardSize cardSize = new CardSize();
-        cardSize.printSize();
-    }
-    void arrrace(){
-        RaсeCards racecard = new RaсeCards();
-        racecard.printSize();
-    }
-    void caunt(){
-        CauntCards cauntcards = new CauntCards();
-        cauntcards.countCard();
+        int[] size = card.getSize();
+
+        System.out.print("Размер карты - ");
+        System.out.println(size[0] + "/" + size[1] + "/" + size[0] + "/" + size[1]); //вряд ли карта будет не ровная Оо
     }
 
-    class CardSize {
-        int top = 12;
-        int bottom = 12;
-        int left = 20;
-        int right = 20;
-
-        void printSize() {
-            System.out.print("Размер карты - ");
-            System.out.println(top + "/" + left + "/" + bottom + "/" + right);
+    void arrrace() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Рассы карт - ");
+        Race[] races = Race.values();
+        for (Race race : races) {
+            builder.append(race.getName()).append(" ");
         }
+        System.out.println(builder.toString());
     }
+
+    void caunt() {
+        System.out.print("Карт в колоде - ");
+        System.out.println(deckSizes.length);
+    }
+
+
     class RaсeCards {
         void printSize() {
             String[] race = {"Humans", "Elfs", "Demons", "Necro", "Gnoms"};
@@ -33,12 +36,4 @@ public class Cards {
             }
         }
     }
-    class CauntCards extends DefaultCards {
-        public void countCard() {
-            int[] deckSizes = new int[30];
-            System.out.print("Карт в колоде - ");
-            System.out.println(deckSizes.length);
-        }
-    }
-
 }
